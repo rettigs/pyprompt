@@ -6,7 +6,7 @@
 # e.g. "~/ridiculously/long/current/directory" becomes "~/ridicu*/long/current/direct*"
 # Also shortens current git branch
 
-import os, re, socket
+import os, re, socket, getpass
 
 class color:
     CLEAR       = '\[\033[00m\]'
@@ -31,7 +31,7 @@ class color:
 
 FREE_WIDTH = 30 # Minimum number of free columns to keep for typing commands
 
-user = os.getlogin()
+user = getpass.getuser()
 host = socket.gethostname()
 cwd = re.sub("^{}".format(os.getenv('HOME')), "~", os.getenv('PWD'))
 gitbranch = os.popen("git rev-parse --abbrev-ref HEAD 2> /dev/null").read().strip()
