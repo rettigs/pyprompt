@@ -31,7 +31,7 @@ class color:
 
 FREE_WIDTH = 30 # Minimum number of free columns to keep for typing commands
 
-user = os.getlogin()
+user = os.getenv("LOGNAME")
 host = socket.gethostname()
 cwd = re.sub("^{}".format(os.getenv('HOME')), "~", os.getenv('PWD'))
 gitbranch = os.popen("git rev-parse --abbrev-ref HEAD 2> /dev/null").read().strip()
@@ -78,4 +78,4 @@ if virtualenv == "":
 else:
     virtualenvformatted = " ({})".format(virtualenv)
 
-print eval(promptformat).encode('utf-8')
+print(eval(promptformat))
